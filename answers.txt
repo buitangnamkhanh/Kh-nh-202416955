@@ -1,0 +1,1 @@
+KHÔNG. Trong Java, tính đa hình (Overloading) phân biệt các phương thức dựa trên chữ ký (signature) là số lượng và kiểu dữ liệu của tham số. Cả title và category đều là kiểu String. Việc tạo hai hàm khởi tạo cùng nhận đúng 1 tham số kiểu String sẽ gây lỗi trùng lặp chữ ký phương thức (Duplicate method), trình biên dịch sẽ không phân biệt được bạn đang gọi hàm nào.
