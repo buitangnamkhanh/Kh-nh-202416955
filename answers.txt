@@ -1,0 +1,20 @@
+-- MỤC 10: UNIQUE ITEM IN A LIST --
+Q: If the passing object is not an instance of Media, what happens? [cite: 217]
+A: Nếu không thực hiện kiểm tra bằng từ khóa 'instanceof', việc cố tình ép kiểu đối tượng (Media) obj sẽ làm nảy sinh lỗi runtime 'ClassCastException' khiến ứng dụng bị sập đột ngột. Bằng giải pháp kiểm tra instanceof trước, hàm sẽ an toàn trả về kết quả false[cite: 217].
+
+-- MỤC 11: POLYMORPHISM WITH TOSTRING() METHOD --
+Q: Observe what happens and explain in detail when calling toString()[cite: 225].
+A: Nhờ cơ chế Đa hình ở mức hành vi (Polymorphism) phối hợp cùng cơ chế liên kết động (Dynamic Binding) tại thời điểm thực thi (Runtime), Java tự động phân tích đối tượng thực tế trong mảng đang thuộc lớp con nào (Book, CompactDisc, hay DigitalVideoDisc) để thực thi chính xác phiên bản hàm toString() được ghi đè ở lớp con đó, bỏ qua phương thức mặc định từ lớp cha Media[cite: 221, 222, 224, 225].
+
+-- MỤC 12: SORT MEDIA IN THE CART (COMPARABLE APPROACH) --
+Q: What class should implement the Comparable interface? [cite: 267]
+A: Lớp cha abstract 'Media' sẽ đảm nhận việc triển khai implements interface 'Comparable<Media>'[cite: 267].
+
+Q: In those classes, how should you implement the compareTo() method to reflect the ordering? [cite: 268]
+A: Trong phương thức compareTo(Media other), ta sẽ lập trình tuần tự logic so sánh trường tiêu đề (title) thông qua hàm so sánh chuỗi compareTo() mặc định, nếu trùng chuỗi thì so sánh tiếp tục đến giá trị giá tiền (cost)[cite: 268].
+
+Q: Can we have two ordering rules of the item if we use this Comparable interface approach? [cite: 269]
+A: Không thể. Giao diện Comparable chỉ hỗ trợ định nghĩa duy nhất một quy luật sắp xếp tự nhiên cố định (Natural Ordering)[cite: 246, 263]. Để hệ thống đổi bộ quy tắc sắp xếp linh hoạt tùy biến, bắt buộc phải sử dụng các đối tượng 'Comparator' độc lập như bài lab đang triển khai[cite: 244].
+
+Q: Suppose the DVDs has a different ordering rule from the other media types. How would you modify? [cite: 270, 271]
+A: Ta sẽ tách biệt quy trình bằng cách cho riêng lớp con 'DigitalVideoDisc' tự thực hiện cài đặt implements interface 'Comparable<DigitalVideoDisc>' và ghi đè hàm compareTo() riêng biệt để thực hiện sắp xếp nội bộ theo trật tự: Tiêu đề -> Thời lượng giảm dần -> Giá thành mặt hàng[cite: 270, 271].
